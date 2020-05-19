@@ -4,7 +4,7 @@ This is a command line function that can be used to search through jupyter noteb
 
 ## Uses
 
-All of the uses below require the user to start by entering `%run nb_search.py` into the IPython consol and then the optional arguments.  I will explain based off of the first arguments that can be given to nb_search and from the simplest to most refined searches.  
+All of the uses below require the user to start by entering `%run nb_search.py` into the IPython console and then the optional arguments.  I will explain based off of the first arguments that can be given to nb_search and from the simplest to most refined searches.  
 
 ### all
 
