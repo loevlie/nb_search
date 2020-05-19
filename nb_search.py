@@ -16,7 +16,7 @@ if Where == 'all': # If you selected "all" you want a list of all of the files i
 if Where == 'heading_pp': # This is if you want a pretty print output of the headings in a notebook
     file_name = sys.argv[2]
         
-if Where != 'all' or 'heading_pp':
+if Where != 'all' and 'heading_pp':
     root = sys.argv[2]
     string_pattern = sys.argv[3:]
 
