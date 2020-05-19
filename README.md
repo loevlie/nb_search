@@ -16,20 +16,20 @@ This is the most basic argument and does not allow any further arguments with it
 
 This argument will allow you to search all of the code cells of the notebooks in your specified directory for a string given and will return the notebooks that have the string in one or more of their cells.  An example of using this to search for the variable "x" is shown below:
 
-`%run nb_search.py code x`
+`%run nb_search.py code '.' x`
 
 ### markdown
 
 This is the same concept as the code argument but in the markdown cells.  
 An example of using this to search the markdown cells for the word "title" is shown below:
 
-`%run nb_search.py markdown title`
+`%run nb_search.py markdown '.' title`
 
 ### heading
 
 This is close to the markdown argument but instead of searching the entire markdown cell it only looks in the headings.  An example of using this to find the word "title" is shown below:
 
-`%run nb_search.py heading title`
+`%run nb_search.py heading '.' title`
 
 ### heading_pp
 
