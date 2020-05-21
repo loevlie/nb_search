@@ -3,6 +3,8 @@ import os
 from IPython.display import HTML, display
 import nbformat
 import argparse
+import re
+import pandas as pd
 
 # HELPFUL FUNCTIONS
 
@@ -22,8 +24,23 @@ def show_files(nb_files):
 def show_files_tags(nb_files,nb_tags,tag): # [due date (datetime)] optional description
     for i,f in enumerate(nb_files):
         if tag in nb_tags[i][1:].strip():
-            print(nb_tags[i])
-            display(HTML(f'<a href="{f}">{f}</a>'))
+            if '[' in nb_tags[i]:
+                m = re.search("[^[]*\[([^]]*)\]", nb_tags[i])
+                ss = ''.join(nb_tags[i].split('['+m.groups(1)[0] + ']'))
+                description = ''.join(ss.split('%TODO')).strip()
+                due_date = pd.to_datetime([m.groups(1)[0]])
+                df = pd.DataFrame({'Date':due_date})
+                df['diff'] = df - pd.Timestamp.now().normalize() 
+                due_days = df['diff'][0].days
+                if due_days >= 0:
+                    print(description + color.BOLD + color.GREEN + ' (Due in: ' + str(due_days) + ' days)' + color.END)
+                    display(HTML(f'<a href="{f}">{f}</a>'))
+                else:
+                    print(description + color.BOLD + color.RED + ' (Past due by: ' + str(abs(due_days)) + ' days)' + color.END)
+                    display(HTML(f'<a href="{f}">{f}</a>'))
+            else:
+                print(nb_tags[i])
+                display(HTML(f'<a href="{f}">{f}</a>'))
         
         
 def search_notebook_util(pattern,cell_type,root='.'):
