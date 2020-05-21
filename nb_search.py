@@ -182,7 +182,7 @@ def search_todo(tag,root='.'):
     """ This function searches all the headings in the notebooks 
     in the directory and returns the notebooks that include the patter 
     input in one or more of the markdown cells"""
-    nb_files,nb_tags = search_tag_util(root)
+    nb_files,nb_tags = search_todo_util(root)
     show_files_tags(nb_files,nb_tags,tag)
         
 if __name__ == '__main__':
