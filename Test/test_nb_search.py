@@ -2,7 +2,7 @@ from nb_search import search_todo_util, search_notebook_util, search_heading_uti
 
 def test_todo():
     file_list, tag_list = search_todo_util();
-    assert len(file_list) == 3 and len(tag_list) == 4
+    assert len(file_list) == 3 and len(tag_list) == 3
 
 def test_markdown_search():
     file_list = search_notebook_util('Loevlie','markdown')
