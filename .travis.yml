@@ -2,6 +2,14 @@ language: python
 python: 
 	- "3.7"
 
+before_script: 
+	- pip install sys
+	- pip install os
+	- pip install IPython
+	- pip install nbformat
+	- pip install argparse
+	- pip install re
+	- pip install pandas
 script:
 	- pytest
 	
