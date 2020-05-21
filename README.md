@@ -1,4 +1,4 @@
-# nb_search.py 
+# nb_search.py [![Build Status](https://travis-ci.com/loevlie/nb_search.svg?branch=master)](https://travis-ci.com/loevlie/nb_search)
 
 This is a command line function that can be used to search through jupyter notebooks at or below a specified directory.  There are different ways to use the function to refine the search or visualize the notebooks.  I will go through them each below.  
 
