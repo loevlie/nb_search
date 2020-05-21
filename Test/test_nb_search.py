@@ -16,10 +16,6 @@ def test_heading_search():
     file_list = search_heading_util('Loevlie')
     assert len(file_list) == 2
     
-def test_heading_list():
-    headings = heading_list('./Notebooks/Test_notebook3.ipynb')
-    assert len(headings) == 2
-    
 def test_property1():
     file_list_Au = search_data_util(['Au'])
     file_list_Ga_Au = search_data_util(['Ga','Au'])
