@@ -54,7 +54,7 @@ Below are 2 examples of using the property argument.  The first is just to find 
 
 ### todo
 
-If you have a specific notebook you would like to tag as TODO then you can search for it with this.  You can also put an optional description that will be displayed above the notebook link.  The syntax for this is shown below:
+If you have a specific notebook you would like to tag as TODO then you can search for it with this.  You can also put an optional description that will be displayed above the notebook link.  The syntax for this is shown below and can be put in any code cell in a notebook:
 
 `%TODO Optional Description`
 
