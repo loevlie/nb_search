@@ -246,4 +246,4 @@ if __name__ == '__main__':
     elif args.property:
         search_data(List_of_desired_props,root)
     elif args.todo:
-        search_tag(tag,root)
+        search_todo(tag,root)
