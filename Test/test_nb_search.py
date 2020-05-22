@@ -6,7 +6,7 @@ def test_todo():
 
 def test_markdown_search():
     file_list = search_notebook_util('Loevlie','markdown')
-    assert len(file_list) == 4
+    assert len(file_list) == 3
     
 def test_code_search():
     file_list = search_notebook_util('espyranto','code')
