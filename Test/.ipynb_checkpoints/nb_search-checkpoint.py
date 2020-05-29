@@ -42,6 +42,7 @@ def show_files_tags(nb_files,nb_tags,tag): # [due date (datetime)] optional desc
             else:
                 print(nb_tags[i])
                 display(HTML(f'<a href="{f}">{f}</a>'))
+    return nb_files
         
         
 def search_notebook_util(pattern,cell_type,root='.'):
