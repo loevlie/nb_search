@@ -152,6 +152,23 @@ def search_data_util(props,root='.'):
                         break
     return file_list
 
+def Get_props(file):
+    """ This function retreives the information from the property cell of the notebook"""
+    no_prop = True
+    nb = nbformat.read(file,as_version=4)
+    for i in nb['cells']:
+        if i['cell_type'] == 'code':
+            if i['source'].startswith('%%properties'):
+                Metal_A = i['source'].split('\n')[1].split()[-1]
+                Metal_B = i['source'].split('\n')[2].split()[-1]
+                Max_H = float(i['source'].split('\n')[3].split()[-1])
+                result = {'Metal_A':Metal_A,'Metal_B':Metal_B,'Max_H':Max_H}
+                no_prop = False
+    if no_prop:
+        result = None
+    
+    return result
+
 def search_todo_util(root='.'):
     """ This function searches the properties cells of the HER notebooks for TODO tags"""
         
@@ -170,6 +187,21 @@ def search_todo_util(root='.'):
                         file_list.append(file)
                         break
     return file_list,tag_list
+
+class NB: 
+    def __init__(self,filename):
+        self.filename = filename
+        self.property = Get_props(filename)
+
+def fsearch_util(f,root='.'):
+    files = search_util(root)
+    file_list = []
+    for file in files:
+        nb = NB(file)
+        if nb.property != None:
+            if f(nb):
+                file_list.append(file)
+    return file_list
     
 # The Main Functions 
 
@@ -222,7 +254,10 @@ def search_todo(tag='TODO',root='.'):
     count = show_files_tags(nb_files,nb_tags,tag)
     return nb_files
         
-
+def fsearch(f,root = '.'):
+    nb_files = fsearch_util(f,root)
+    show_files(nb_files)
+    return nb_files
 
 if __name__ == '__main__':
     
