@@ -66,14 +66,18 @@ The todo option is simple and only requires the user input the directory they wo
 
 This is the exact same concept as the property option but can allow for more complicated queries of the three properties.  The user must input a function that returns True for the files he would like to view.  An example of the syntax of this function is shown below:
 
-`def f(NB):
+```
+def f(NB):
     p1 = NB.property['Metal_A'] == 'Pt'
     p2 = NB.property['Metal_B'] == 'Pt'
     p3 = NB.property['Max_H'] > 47
-    return (p1 or p2) and p3`
+    return (p1 or p2) and p3
+```
 	
 Then the user can search for files in the current directory that have 'Pt' as either metal A or metal B, as well as, a max_H greater that 47 micromoles by using the function as shown below:
 
-`from nb_search import fsearch
- files = fserach(f,'.')` 
+```
+from nb_search import fsearch
+files = fsearch(f,'.')
+```
 
