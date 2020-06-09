@@ -1,0 +1,9 @@
+README.md
+nb_search.py
+setup.py
+nb_search.egg-info/PKG-INFO
+nb_search.egg-info/SOURCES.txt
+nb_search.egg-info/dependency_links.txt
+nb_search.egg-info/requires.txt
+nb_search.egg-info/top_level.txt
+test/test_nb_search.py
