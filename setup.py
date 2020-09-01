@@ -7,5 +7,4 @@ setup(name='nb_search',
       author='Dennis Loevlie',
       author_email='dloevlie@andrew.cmu.edu',
       scripts=['nb_search.py'],
-      packages=['nb_search'],
       install_requires=['IPython', 'matplotlib', 'numpy', 'nbformat', 'pandas', 'argparse'],)
