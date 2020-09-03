@@ -25,16 +25,17 @@ def search_util(root='.'):
 
 
 def show_files(nb_files):
-    nb_files = list(nb_files)
-    if nb_files[0].startswith('/content/drive'):
-        from subprocess import getoutput
-        from IPython.display import HTML
-        import os
-        fids = [getoutput(f"xattr -p 'user.drive.id' '{nbf}' ") for nbf in nb_files]
-        for fid,nbf in zip(fids, nb_files):
-            display(HTML(f"<a href=https://colab.research.google.com/drive/{fid} target=_blank>{os.path.split(nbf)[-1]}</a>"))
+    if len(nb_files) == 0:
+        nb_files = nb_files
     else:
-        [display(HTML(f'<a href="{f}">{f}</a>')) for f in nb_files]
+        if list(nb_files)[0].startswith('/content/drive'):
+            from subprocess import getoutput
+            nb_files = list(nb_files)
+            fids = [getoutput(f"xattr -p 'user.drive.id' '{nbf}' ") for nbf in nb_files]
+            for fid,nbf in zip(fids, nb_files):
+                display(HTML(f"<a href=https://colab.research.google.com/drive/{fid} target=_blank>{os.path.split(nbf)[-1]}</a>"))
+        else:
+            [display(HTML(f'<a href="{f}">{f}</a>')) for f in nb_files]
     
 
 def show_files_tags(nb_files,nb_tags,tag): # [due date (datetime)] optional description
