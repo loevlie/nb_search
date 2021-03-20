@@ -5,12 +5,21 @@ import nbformat
 import argparse
 import re
 import pandas as pd
+from multiprocessing.dummy import Pool  # This is a thread-based Pool
 
 # HELPFUL FUNCTIONS
 
+
 def search_util(root='.'):
-    """Recursively find all ipynb files in a directory.
-    root - This is the directory you would like to find the files in, defaults to cwd""" 
+    """  Recursively find all ipynb files in a directory.
+    root - This is the directory you would like to find the files in, defaults to cwd
+
+    Args:
+        root (str, optional): The directory you would like to recursively search through. Defaults to '.'.
+
+    Returns:
+        list: All Jupyter notebook files under the directory specified
+    """
     nb_files = []
     if isinstance(root, list): 
         for file in root:
@@ -25,6 +34,11 @@ def search_util(root='.'):
 
 
 def show_files(nb_files):
+    """Displays the final list of Jupyter notebook files
+
+    Args:
+        nb_files (list): List of queried Jupyter notebook files
+    """
     if len(nb_files) == 0:
         nb_files = nb_files
     else:
@@ -66,17 +80,38 @@ def search_notebook_util(pattern,cell_type,root='.'):
     in the notebooks in the directory and returns the notebooks
     that include the patter input in one or more of the markdown 
     or code cells"""
-
+    
     files = search_util(root)
+    global file_list
     file_list = []
-    for file in files:
-        nb = nbformat.read(file,as_version=4)
-        for i in nb['cells']:
-            if i['cell_type'] == cell_type:
-                text = i['source']
-                if pattern in text:
-                    file_list.append(file)
-                    break
+    def search_through_files(file):
+        global file_list
+        Worked = True
+        try:
+            nb = nbformat.read(file,as_version=4)
+        except:
+            Worked = False
+        
+        if Worked:
+            for i in nb['cells']:
+                if i['cell_type'] == cell_type:
+                    text = i['source']
+                    if pattern in text:
+                        file_list.append(file)
+                        break
+        else:
+            Worked = True
+    
+
+    # If there are a ton of files the code could benifit from Parallelization
+    if len(files)>500:
+        CPU_Amount = os.cpu_count() // 2 # A safe number of usable CPU's
+        with Pool(CPU_Amount) as p:
+            p.map(search_through_files,files)
+    else:
+        for file in files:
+            search_through_files(file)
+    
     return file_list
 
 def search_heading_util(pattern,root='.'):
@@ -218,34 +253,70 @@ def fsearch_util(f,root='.'):
 # The Main Functions 
 
 def search_files(root='.'):
+    """Displays all Jupyter Notebook files as clickable links under the specified directory
+
+    Args:
+        root (str, optional): The directory you would like to recursively search through. Defaults to '.'.
+
+    Returns:
+        list: A list of the Jupyter Notebook files that are also displayed as clickable links
+    """
     nb_files = search_util(root)
     show_files(nb_files)
     return nb_files
     
 
 def search_notebook(string_pattern,cell_type,root='.'):
-        """ Cell_type can be 'code' or 'markdown' """
-        nb_files = search_notebook_util(string_pattern,cell_type,root)
-        show_files(nb_files)
-        return nb_files
+    """ Displays all Jupyter Notebook files as clickable links under the specified directory after
+        searching through the files for the string pattern in either the code or makedown cells.  
+
+    Args:
+        string_pattern (str): The pattern you are searching for in the Jupyter notebooks
+        cell_type (str): 'code' or 'markdown' 
+        root (str, optional): The directory you would like to recursively search through. Defaults to '.'.
+
+    Returns:
+        list: A list of the Jupyter Notebook files that are also displayed as clickable links
+    """
+    nb_files = search_notebook_util(string_pattern,cell_type,root)
+    show_files(nb_files)
+    return nb_files
 
 def search_heading(pattern,root='.'):
-    """ This function searches all the headings in the notebooks 
-    in the directory and returns the notebooks that include the patter 
-    input in one or more of the markdown cells"""
+    """ Displays all Jupyter Notebook files as clickable links under the specified directory after
+        searching through the files for the string pattern in the headings.
+    Args:
+        pattern (str): The pattern you are searching for in the Jupyter notebooks
+        root (str, optional): The directory you would like to recursively search through. Defaults to '.'.
+
+    Returns:
+        list: A list of the Jupyter Notebook files that are also displayed as clickable links
+    """
     nb_files = search_heading_util(pattern,root)
     show_files(nb_files)
     return nb_files
 
 def headings_pprint(file):
-    """ This function produces an indented (based on heading level) "pretty print" of the headings in the file given """
+    """Produces an indented (based on heading level) "pretty print" of the headings in the file
+
+    Args:
+        file (str): The path to the file that you would like to have it's headings pretty printed.
+    """
     List = heading_list(file)
     pretty_print_headings(List)
 
 def search_data(props,root='.'):
-    """ This function searches all the headings in the notebooks 
-    in the directory and returns the notebooks that include the patter 
-    input in one or more of the markdown cells"""
+    """ Displays all Jupyter Notebook files as clickable links under the specified directory after
+        searching through the files for the properties specified.   
+
+    Args:
+        props (str): The properties you are trying to filter based on.  Can only have and logical operator to query on any combination of two metals and the max_H 
+            Ex: 'Au and max_H > 2', Ex: 'Au and Pd and max_H < 30'
+        root (str, optional): The directory you would like to recursively search through. Defaults to '.'.
+
+    Returns:
+        list: A list of the Jupyter Notebook files that are also displayed as clickable links
+    """
     if isinstance(props,list):
         None
     else:
@@ -259,14 +330,40 @@ def search_data(props,root='.'):
     show_files(nb_files)
     return nb_files
         
-def search_todo(tag='TODO',root='.'):
-    """ This function searches all the code cells in the notebooks 
-    in the directory and returns the notebooks descriptions and due dates of the notebooks that include the todo tag in one or more of the code cells"""
+def search_todo(root='.'):
+    """ This function searches all the code cells in the Jupyter Notebooks under the specified the directory and returns 
+        the notebooks descriptions and due dates of the notebooks that include a "todo tag" in one or more of the code cells
+        a TODO tag may be placed in any code cell at any line with an optional due data and description using the following syntax:
+
+        %TODO [YEAR-MONTH-DAY] Optional Description
+
+    Args:
+        root (str, optional): The directory you would like to recursively search through. Defaults to '.'.
+
+    Returns:
+        list: All the files that contained TODO tags
+    """
+    tag='TODO'
     nb_files,nb_tags = search_todo_util(root)
     count = show_files_tags(nb_files,nb_tags,tag)
     return nb_files
         
 def fsearch(f,root = '.'):
+    """A similar function to search_todo but allows for more advanced querying by taking advantage of pythons built in parser.  
+       Ex:
+            def f(NB):
+                p1 = NB.property['Metal_A'] == 'Pt'
+                p2 = NB.property['Metal_B'] == 'Pt'
+                p3 = NB.property['Max_H'] > 47
+                return (p1 or p2) and p3
+
+    Args:
+        f (func): A function where the output is boolean and determines if a notebook should be returned.  The input is a notebook object with a .property attribute that acts as a dictionary with three keys: 'Metal_A', 'Metal_B', and 'Max_H'.
+        root (str, optional): The directory you would like to recursively search through. Defaults to '.'.
+
+    Returns:
+        list: A list of the Jupyter Notebook files that are also displayed as clickable links
+    """
     nb_files = fsearch_util(f,root)
     show_files(nb_files)
     return nb_files
@@ -274,6 +371,7 @@ def fsearch(f,root = '.'):
 if __name__ == '__main__':
     
     # Collecting the Command Line Inputs
+    start = time.time() # For checking how long the script takes
 
     parser = argparse.ArgumentParser(description='Search Jupyter Notebooks')
 
@@ -332,3 +430,5 @@ if __name__ == '__main__':
         search_data(List_of_desired_props,root)
     elif args.todo:
         search_todo(tag,root)
+    
+    

@@ -1,5 +1,4 @@
 README.md
-nb_search.py
 setup.py
 nb_search.egg-info/PKG-INFO
 nb_search.egg-info/SOURCES.txt
