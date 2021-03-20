@@ -278,9 +278,9 @@ def search_notebook(string_pattern,cell_type,root='.'):
     Returns:
         list: A list of the Jupyter Notebook files that are also displayed as clickable links
     """
-        nb_files = search_notebook_util(string_pattern,cell_type,root)
-        show_files(nb_files)
-        return nb_files
+    nb_files = search_notebook_util(string_pattern,cell_type,root)
+    show_files(nb_files)
+    return nb_files
 
 def search_heading(pattern,root='.'):
     """ Displays all Jupyter Notebook files as clickable links under the specified directory after
