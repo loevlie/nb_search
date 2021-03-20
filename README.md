@@ -10,32 +10,42 @@ All of the uses below require the user to start by entering `%run nb_search.py` 
 
 This is the most basic argument and does not allow any further arguments with it.  It simply searches the desired directory for all of the notebook files and displays them as clickable HTML links to the notebooks.  The syntax for using this is shown below:
 
-`%run nb_search.py --all`
+```python3
+%run nb_search.py --all
+```
 
 ### code 
 
 This argument will allow you to search all of the code cells of the notebooks in your specified directory for a string given and will return the notebooks that have the string in one or more of their cells.  An example of using this to search for the variable "x" is shown below:
 
-`%run nb_search.py --code '.' x`
+```python3
+%run nb_search.py --code '.' x
+```
 
 ### markdown
 
 This is the same concept as the code argument but in the markdown cells.  
 An example of using this to search the markdown cells for the word "title" is shown below:
 
-`%run nb_search.py --markdown '.' title`
+```python3
+%run nb_search.py --markdown '.' title
+```
 
 ### heading
 
 This is close to the markdown argument but instead of searching the entire markdown cell it only looks in the headings.  An example of using this to find the word "title" is shown below:
 
-`%run nb_search.py --heading '.' title`
+```python3
+%run nb_search.py --heading '.' title
+```
 
 ### heading_pp
 
 Once you have found a jupyter notebook you want to know more about but don't want to open yet you can use __heading_pp___ to get a pretty printed display of the headings in the file.  An example of how to do that is shown below:
 
-`%run nb_search.py --heading_pp './notebook.ipynb'`
+```python3
+%run nb_search.py --heading_pp './notebook.ipynb'
+```
 
 ### property
 
@@ -49,24 +59,32 @@ The order in which you enter the metals or even the Max_H does not matter as lon
 
 Below are 2 examples of using the property argument.  The first is just to find any notebook with the metal Mo in it.  The second is to find any notebook with Mo and a Max_H of below 8.0 micromoles.
 
-1. `%run nb_search.py --property '.' Mo`
-2. `%run nb_search.py --property '.' Mo and Max_H < 8.0`
+```python3
+%run nb_search.py --property '.' Mo
+```
+```python3
+%run nb_search.py --property '.' Mo and Max_H < 8.0
+```
 
 ### todo
 
 If you have a specific notebook you would like to tag as TODO then you can search for it with this.  You can also put an optional description and due date (in brackets) that will be displayed above the notebook link.  The syntax for this is shown below and can be put in any code cell in a notebook:
 
-`%TODO [YEAR-MONTH-DAY] Optional Description`
+```python3
+%TODO [YEAR-MONTH-DAY] Optional Description
+```
 
 The todo option is simple and only requires the user input the directory they would like to search through or '.' for the current one as shown below:
 
-`%run nb_search.py --todo '.'`
+```python3
+%run nb_search.py --todo '.'
+```
 
 ### fsearch
 
 This is the exact same concept as the property option but can allow for more complicated queries of the three properties.  The user must input a function that returns True for the files he would like to view.  An example of the syntax of this function is shown below:
 
-```
+```python3
 def f(NB):
     p1 = NB.property['Metal_A'] == 'Pt'
     p2 = NB.property['Metal_B'] == 'Pt'
@@ -76,7 +94,7 @@ def f(NB):
 	
 Then the user can search for files in the current directory that have 'Pt' as either metal A or metal B, as well as, a max_H greater that 47 micromoles by using the function as shown below:
 
-```
+```python3
 from nb_search import fsearch
 files = fsearch(f,'.')
 ```
