@@ -1,7 +1,0 @@
-README.md
-setup.py
-src/nb_search.egg-info/PKG-INFO
-src/nb_search.egg-info/SOURCES.txt
-src/nb_search.egg-info/dependency_links.txt
-src/nb_search.egg-info/requires.txt
-src/nb_search.egg-info/top_level.txt

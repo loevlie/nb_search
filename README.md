@@ -2,9 +2,15 @@
 
 This is a package that can be used to search through jupyter notebooks at or below a specified directory.  There are different ways to use the function to refine the search or visualize the notebooks.  I will go through them each below.  
 
+## Installing __nb_search__
+
+```bash
+$ pip install nb_search
+``` 
+
 ## Uses
 
-All of the uses below require the user to start by entering `%run nb_search.py` into the IPython console and along with the optional arguments and directory (or list of files) you would like to search through.  I will explain based off of the different options arguments to nb_search.
+All of the uses below (except for fsearch) require the user to start by entering `%run nb_search.py` into the IPython console and along with the optional arguments and directory (or list of files) you would like to search through.  I will explain based off of the different options arguments to nb_search.
 
 ### all
 
@@ -14,6 +20,8 @@ This is the most basic argument and does not allow any further arguments with it
 %run nb_search.py --all
 ```
 
+Function: **search_files**
+
 ### code 
 
 This argument will allow you to search all of the code cells of the notebooks in your specified directory for a string given and will return the notebooks that have the string in one or more of their cells.  An example of using this to search for the variable "x" is shown below:
@@ -21,6 +29,8 @@ This argument will allow you to search all of the code cells of the notebooks in
 ```python3
 %run nb_search.py --code '.' x
 ```
+
+Function: **search_notebook**
 
 ### markdown
 
@@ -31,6 +41,8 @@ An example of using this to search the markdown cells for the word "title" is sh
 %run nb_search.py --markdown '.' title
 ```
 
+Function: **search_notebook**
+
 ### heading
 
 This is close to the markdown argument but instead of searching the entire markdown cell it only looks in the headings.  An example of using this to find the word "title" is shown below:
@@ -39,6 +51,8 @@ This is close to the markdown argument but instead of searching the entire markd
 %run nb_search.py --heading '.' title
 ```
 
+Function: **search_heading**
+
 ### heading_pp
 
 Once you have found a jupyter notebook you want to know more about but don't want to open yet you can use __heading_pp___ to get a pretty printed display of the headings in the file.  An example of how to do that is shown below:
@@ -46,6 +60,8 @@ Once you have found a jupyter notebook you want to know more about but don't wan
 ```python3
 %run nb_search.py --heading_pp './notebook.ipynb'
 ```
+
+Function: **headings_pprint**
 
 ### property
 
@@ -66,6 +82,8 @@ Below are 2 examples of using the property argument.  The first is just to find 
 %run nb_search.py --property '.' Mo and Max_H < 8.0
 ```
 
+Function: **search_data**
+
 ### todo
 
 If you have a specific notebook you would like to tag as TODO then you can search for it with this.  You can also put an optional description and due date (in brackets) that will be displayed above the notebook link.  The syntax for this is shown below and can be put in any code cell in a notebook:
@@ -79,6 +97,8 @@ The todo option is simple and only requires the user input the directory they wo
 ```python3
 %run nb_search.py --todo '.'
 ```
+
+Function: **search_todo**
 
 ### fsearch
 
@@ -97,5 +117,12 @@ Then the user can search for files in the current directory that have 'Pt' as ei
 ```python3
 from nb_search import fsearch
 files = fsearch(f,'.')
+```
+
+## Developing nb_search
+To install nb_search, along with the tools you need to develop and run tests, run the following in your virtualenv:
+
+```bash
+$ pip install -e .[dev]
 ```
 
