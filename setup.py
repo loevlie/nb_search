@@ -4,7 +4,7 @@ with open("README.md","r") as fh:
     long_description = fh.read()
 
 setup(name='nb_search',
-      version='1.0.0',
+      version='1.0.2',
       description='Module for searching through Jupyter Notebooks in a provided directory',
       long_description=long_description,
       long_description_content_type="text/markdown",

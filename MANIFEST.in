@@ -1,8 +1,8 @@
+include *.in
 recursive-include Test *.ipynb
 recursive-include Test *.py
 recursive-include Test *.pyc
 recursive-include build *.py
-recursive-include dist *.asc
 recursive-include dist *.gz
 recursive-include dist *.whl
-recursive-include src *.py
+recursive-include nb_search *.py

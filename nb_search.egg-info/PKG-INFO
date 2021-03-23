@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: nb-search
-Version: 1.0.0
+Version: 1.0.2
 Summary: Module for searching through Jupyter Notebooks in a provided directory
 Home-page: UNKNOWN
 Author: Dennis Loevlie
@@ -10,9 +10,15 @@ Description: # nb_search.py [![Build Status](https://travis-ci.com/loevlie/nb_se
         
         This is a package that can be used to search through jupyter notebooks at or below a specified directory.  There are different ways to use the function to refine the search or visualize the notebooks.  I will go through them each below.  
         
+        ## Installing __nb_search__
+        
+        ```bash
+        $ pip install nb_search
+        ``` 
+        
         ## Uses
         
-        All of the uses below require the user to start by entering `%run nb_search.py` into the IPython console and along with the optional arguments and directory (or list of files) you would like to search through.  I will explain based off of the different options arguments to nb_search.
+        All of the uses below (except for fsearch) require the user to start by entering `%run nb_search.py` into the IPython console and along with the optional arguments and directory (or list of files) you would like to search through.  I will explain based off of the different options arguments to nb_search.
         
         ### all
         
@@ -22,6 +28,8 @@ Description: # nb_search.py [![Build Status](https://travis-ci.com/loevlie/nb_se
         %run nb_search.py --all
         ```
         
+        Function: **search_files**
+        
         ### code 
         
         This argument will allow you to search all of the code cells of the notebooks in your specified directory for a string given and will return the notebooks that have the string in one or more of their cells.  An example of using this to search for the variable "x" is shown below:
@@ -29,6 +37,8 @@ Description: # nb_search.py [![Build Status](https://travis-ci.com/loevlie/nb_se
         ```python3
         %run nb_search.py --code '.' x
         ```
+        
+        Function: **search_notebook**
         
         ### markdown
         
@@ -39,6 +49,8 @@ Description: # nb_search.py [![Build Status](https://travis-ci.com/loevlie/nb_se
         %run nb_search.py --markdown '.' title
         ```
         
+        Function: **search_notebook**
+        
         ### heading
         
         This is close to the markdown argument but instead of searching the entire markdown cell it only looks in the headings.  An example of using this to find the word "title" is shown below:
@@ -47,6 +59,8 @@ Description: # nb_search.py [![Build Status](https://travis-ci.com/loevlie/nb_se
         %run nb_search.py --heading '.' title
         ```
         
+        Function: **search_heading**
+        
         ### heading_pp
         
         Once you have found a jupyter notebook you want to know more about but don't want to open yet you can use __heading_pp___ to get a pretty printed display of the headings in the file.  An example of how to do that is shown below:
@@ -54,6 +68,8 @@ Description: # nb_search.py [![Build Status](https://travis-ci.com/loevlie/nb_se
         ```python3
         %run nb_search.py --heading_pp './notebook.ipynb'
         ```
+        
+        Function: **headings_pprint**
         
         ### property
         
@@ -74,6 +90,8 @@ Description: # nb_search.py [![Build Status](https://travis-ci.com/loevlie/nb_se
         %run nb_search.py --property '.' Mo and Max_H < 8.0
         ```
         
+        Function: **search_data**
+        
         ### todo
         
         If you have a specific notebook you would like to tag as TODO then you can search for it with this.  You can also put an optional description and due date (in brackets) that will be displayed above the notebook link.  The syntax for this is shown below and can be put in any code cell in a notebook:
@@ -87,6 +105,8 @@ Description: # nb_search.py [![Build Status](https://travis-ci.com/loevlie/nb_se
         ```python3
         %run nb_search.py --todo '.'
         ```
+        
+        Function: **search_todo**
         
         ### fsearch
         
