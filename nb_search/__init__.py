@@ -71,8 +71,12 @@ def show_files_tags(nb_files,nb_tags,tag): # [due date (datetime)] optional desc
                     print(description + color.BOLD + color.RED + ' (Past due by: ' + str(abs(due_days)) + ' days)' + color.END)
                     display(HTML(f'<a href="{f}">{f}</a>'))
             else:
-                print(nb_tags[i])
-                display(HTML(f'<a href="{f}">{f}</a>'))
+                if nb_tags[i].split('%TODO')[1].strip() == '':
+                    print('No Description or due date provided')
+                    display(HTML(f'<a href="{f}">{f}</a>'))
+                else:
+                    print(nb_tags[i].split('%TODO')[1].strip())
+                    display(HTML(f'<a href="{f}">{f}</a>'))
         
         
 def search_notebook_util(pattern,cell_type,root='.'):
@@ -104,7 +108,7 @@ def search_notebook_util(pattern,cell_type,root='.'):
     
 
     # If there are a ton of files the code could benifit from Parallelization
-    if len(files)>500:
+    if len(files)>1000:
         CPU_Amount = os.cpu_count() // 2 # A safe number of usable CPU's
         with Pool(CPU_Amount) as p:
             p.map(search_through_files,files)
@@ -119,7 +123,10 @@ def search_heading_util(pattern,root='.'):
     files = search_util(root)
     file_list = []
     for file in files:
-        nb = nbformat.read(file,as_version=4)
+        try:
+            nb = nbformat.read(file,as_version=4)
+        except:
+            continue
         for i in nb['cells']:
             if i['cell_type'] == 'markdown':
                 text = i['source']
@@ -176,7 +183,10 @@ def search_data_util(props,root='.'):
     files = search_util(root)
     file_list = []
     for file in files:
-        nb = nbformat.read(file,as_version=4)
+        try:
+            nb = nbformat.read(file,as_version=4)
+        except:
+            continue
         for i in nb['cells']:
             if i['cell_type'] == 'code':
                 if i['source'].startswith('%%properties'):
@@ -223,7 +233,10 @@ def search_todo_util(root='.'):
     file_list = []
     tag_list = []
     for file in files:
-        nb = nbformat.read(file,as_version=4)
+        try: # I really should not do it this way (just a short term fix)
+            nb = nbformat.read(file,as_version=4)
+        except:
+            continue
         for i in nb['cells']:
             if file in file_list:
                 break

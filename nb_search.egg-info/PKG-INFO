@@ -6,7 +6,7 @@ Home-page: UNKNOWN
 Author: Dennis Loevlie
 Author-email: loevliedenny@gmail.com
 License: UNKNOWN
-Description: # nb_search.py [![Build Status](https://travis-ci.com/loevlie/nb_search.svg?branch=master)](https://travis-ci.com/loevlie/nb_search)
+Description: # nb_search.py [![Travis CI w/ Logo](https://img.shields.io/travis/loevlie/nb_search/master.svg?logo=travis)](https://travis-ci.com/loevlie/nb_search) [![Issues](https://img.shields.io/github/issues-raw/loevlie/nb_search.svg?maxAge=25000)](https://github.com/loevlie/nb_search/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/loevlie/nb_search.svg?style=flat)]() [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) [![GitHub contributors](https://img.shields.io/github/contributors/loevlie/nb_search.svg?style=flat)]() [![PyPi Version](https://img.shields.io/pypi/v/nb-search.svg)](https://pypi.org/project/nb-search/)[![GitHub last commit](https://img.shields.io/github/last-commit/loevlie/nb_search.svg?style=flat)]()[![GitHub commit activity the past week, 4 weeks](https://img.shields.io/github/commit-activity/y/loevlie/nb_search.svg?style=flat)]()
         
         This is a package that can be used to search through jupyter notebooks at or below a specified directory.  There are different ways to use the function to refine the search or visualize the notebooks.  I will go through them each below.  
         
