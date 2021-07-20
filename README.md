@@ -1,6 +1,6 @@
 # nb_search.py [![Travis CI w/ Logo](https://img.shields.io/travis/loevlie/nb_search/master.svg?logo=travis)](https://travis-ci.com/loevlie/nb_search) [![Issues](https://img.shields.io/github/issues-raw/loevlie/nb_search.svg?maxAge=25000)](https://github.com/loevlie/nb_search/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/loevlie/nb_search.svg?style=flat)]() [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) [![GitHub contributors](https://img.shields.io/github/contributors/loevlie/nb_search.svg?style=flat)]() [![PyPi Version](https://img.shields.io/pypi/v/nb-search.svg)](https://pypi.org/project/nb-search/)[![GitHub last commit](https://img.shields.io/github/last-commit/loevlie/nb_search.svg?style=flat)]()[![GitHub commit activity the past week, 4 weeks](https://img.shields.io/github/commit-activity/y/loevlie/nb_search.svg?style=flat)]()
 
-Have you ever needed to find a old Jupyter Notebook file but forgot where you put it :grimacing: ?  Do you remember the packages you used :thinking: or maybe some of the terms you may have put in the markdown?  If so then this package will be a useful tool for you!  After learning the uses of this package you can even save valuable notebooks for later use by adding TODO tags.  This is all explained in detail below.  
+Have you ever needed to find a old Jupyter Notebook file but forgot where you put it :grimacing: ?  Do you remember the packages you used :thinking: or maybe some of the terms you put in the markdown?  If so then this package will be a useful tool for you!  After learning the uses of this package you can even save valuable notebooks for later use by adding TODO tags.  This is all explained in detail below.  
 
 ### High Level Description
 
@@ -99,8 +99,8 @@ If you have found a jupyter notebook and would like to know more about it but do
 
 * **Jupyter Notebook**
 	```python3
-	from nb_search import heading_pprint
-	files = heading_pprint('PATH_TO_DIRECTORY')
+	from nb_search import headings_pprint
+	files = headings_pprint('PATH_TO_DIRECTORY')
 	```
 	
 
