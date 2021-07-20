@@ -99,7 +99,10 @@ def search_notebook_util(pattern,cell_type,root='.'):
         if Worked:
             for i in nb['cells']:
                 if i['cell_type'] == cell_type:
-                    text = i['source']
+                    try:
+                        text = i['source']
+                    except:
+                        continue
                     if pattern in text:
                         file_list.append(file)
                         break
@@ -129,7 +132,10 @@ def search_heading_util(pattern,root='.'):
             continue
         for i in nb['cells']:
             if i['cell_type'] == 'markdown':
-                text = i['source']
+                try:
+                    text = i['source']
+                except:
+                    continue
                 for i in text.split('\n'):
                     try:
                         if i.strip()[0] == '#' and pattern in i:
@@ -189,24 +195,27 @@ def search_data_util(props,root='.'):
             continue
         for i in nb['cells']:
             if i['cell_type'] == 'code':
-                if i['source'].startswith('%%properties'):
-                    Metal_A = i['source'].split('\n')[1].split()[-1]
-                    Metal_B = i['source'].split('\n')[2].split()[-1]
-                    Max_H = float(i['source'].split('\n')[3].split()[-1])
-                    require = 0
-                    for prop in props:
-                        if '<' in prop:
-                            if Max_H < float(prop.split('<')[-1].strip()):
-                                require += 1
-                        elif '>' in prop:
-                            if Max_H > float(prop.split('>')[-1].strip()):
-                                require += 1
-                        else: # Assumed the user entered a metal name
-                            if prop.upper() == Metal_A.upper() or prop.upper() == Metal_B.upper():
-                                require += 1
-                    if require == requirements:
-                        file_list.append(file)
-                        break
+                try:
+                    if i['source'].startswith('%%properties'):
+                        Metal_A = i['source'].split('\n')[1].split()[-1]
+                        Metal_B = i['source'].split('\n')[2].split()[-1]
+                        Max_H = float(i['source'].split('\n')[3].split()[-1])
+                        require = 0
+                        for prop in props:
+                            if '<' in prop:
+                                if Max_H < float(prop.split('<')[-1].strip()):
+                                    require += 1
+                            elif '>' in prop:
+                                if Max_H > float(prop.split('>')[-1].strip()):
+                                    require += 1
+                            else: # Assumed the user entered a metal name
+                                if prop.upper() == Metal_A.upper() or prop.upper() == Metal_B.upper():
+                                    require += 1
+                        if require == requirements:
+                            file_list.append(file)
+                            break
+                except:
+                    continue
     return file_list
 
 def Get_props(file):
