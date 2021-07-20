@@ -14,7 +14,9 @@ Test/Notebooks/.ipynb_checkpoints/Test_notebook2-checkpoint.ipynb
 Test/Notebooks/.ipynb_checkpoints/Test_notebook3-checkpoint.ipynb
 Test/Notebooks/.ipynb_checkpoints/Test_notebook4-checkpoint.ipynb
 Test/__pycache__/nb_search.cpython-37.pyc
+Test/__pycache__/nb_search.cpython-38.pyc
 Test/__pycache__/test_nb_search.cpython-37-pytest-5.4.2.pyc
+Test/__pycache__/test_nb_search.cpython-38-pytest-6.2.3.pyc
 nb_search/__init__.py
 nb_search.egg-info/PKG-INFO
 nb_search.egg-info/SOURCES.txt
