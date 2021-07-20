@@ -174,13 +174,13 @@ files = fsearch(f,'.')
 
 ## Demonstration of Use
 
-Most of the search functions output a list of the files that can then be used instead of a directory path to refine a search.  That capability along with the TODO search are shown below:
+Most of the outputs are a list of files that can be used instead of a directory path to refine another search.  That capability along with the TODO search are shown below:
 
 ![gif](https://github.com/loevlie/nb_search/blob/master/nb_search.gif)
 ## Developing nb_search
-To install nb_search, along with the tools you need to develop and run tests, run the following in your virtualenv:
+To install nb_search, along with the tools you need to develop and run tests, run the following in your virtualenv after cloning the repository:
 
 ```bash
-$ pip install -e .[dev]
+$ pip install -e .
 ```
 
