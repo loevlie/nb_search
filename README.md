@@ -1,6 +1,6 @@
 # nb_search.py [![Travis CI w/ Logo](https://img.shields.io/travis/loevlie/nb_search/master.svg?logo=travis)](https://travis-ci.com/loevlie/nb_search) [![Issues](https://img.shields.io/github/issues-raw/loevlie/nb_search.svg?maxAge=25000)](https://github.com/loevlie/nb_search/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/loevlie/nb_search.svg?style=flat)]() [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) [![GitHub contributors](https://img.shields.io/github/contributors/loevlie/nb_search.svg?style=flat)]() [![PyPi Version](https://img.shields.io/pypi/v/nb-search.svg)](https://pypi.org/project/nb-search/)[![GitHub last commit](https://img.shields.io/github/last-commit/loevlie/nb_search.svg?style=flat)]()[![GitHub commit activity the past week, 4 weeks](https://img.shields.io/github/commit-activity/y/loevlie/nb_search.svg?style=flat)]()
 
-This is a package that can be used to search through jupyter notebooks at or below a specified directory.  There are different ways to use the function to refine the search or visualize the notebooks.  I will go through them each below.  
+This is a package that can be used to search through jupyter notebooks at or below a specified directory.  There are many different ways to use the package to refine the search or visualize the notebooks.  I will go through most of them below.  
 
 ## Installing __nb_search__
 
@@ -10,58 +10,94 @@ $ pip install nb_search
 
 ## Uses
 
-All of the uses below (except for fsearch) require the user to start by entering `%run nb_search.py` into the IPython console and along with the optional arguments and directory (or list of files) you would like to search through.  I will explain based off of the different options arguments to nb_search.
+All of the uses below (except for fsearch) can be used in IPython console and in a Jupyter Notebook itself.  Using it in a Jupyter Notebook is straight forward.  To use it in a IPython console start by entering `%run nb_search.py` into the IPython console along with the optional arguments and directory (or list of files) you would like to search through.
 
 ### all
 
 This is the most basic argument and does not allow any further arguments with it.  It simply searches the desired directory for all of the notebook files and displays them as clickable HTML links to the notebooks.  The syntax for using this is shown below:
 
-```python3
-%run nb_search.py --all
-```
 
-Function: **search_files**
+* **IPython Console**
+	```python3
+	%run nb_search.py --all
+	```
+
+
+* **Jupyter Notebook**
+	```python3
+	from nb_search import search_files
+	files = search_files('PATH_TO_DIRECTORY')
+	```
+	^^ You may simply run the function without any arguments.  This will recursively search through the current directory.  
+
 
 ### code 
 
 This argument will allow you to search all of the code cells of the notebooks in your specified directory for a string given and will return the notebooks that have the string in one or more of their cells.  An example of using this to search for the variable "x" is shown below:
 
-```python3
-%run nb_search.py --code '.' x
-```
 
-Function: **search_notebook**
+* **IPython Console**
+	```python3
+	%run nb_search.py --code '.' x
+	```
+
+
+* **Jupyter Notebook**
+	```python3
+	from nb_search import search_notebook
+	files = search_notebook('x','code','PATH_TO_DIRECTORY')
+	```
+
 
 ### markdown
 
 This is the same concept as the code argument but in the markdown cells.  
 An example of using this to search the markdown cells for the word "title" is shown below:
 
-```python3
-%run nb_search.py --markdown '.' title
-```
+* **IPython Console**
+	```python3
+	%run nb_search.py --markdown '.' title
+	```
 
-Function: **search_notebook**
+* **Jupyter Notebook**
+	```python3
+	from nb_search import search_notebook
+	files = search_notebook('title','markdown','PATH_TO_DIRECTORY')
+	```
+
 
 ### heading
 
 This is close to the markdown argument but instead of searching the entire markdown cell it only looks in the headings.  An example of using this to find the word "title" is shown below:
 
-```python3
-%run nb_search.py --heading '.' title
-```
 
-Function: **search_heading**
+* **IPython Console**
+	```python3
+	%run nb_search.py --heading '.' title
+	```
+
+
+* **Jupyter Notebook**
+	```python3
+	from nb_search import search_heading
+	files = search_heading('title','PATH_TO_DIRECTORY')
+	```
 
 ### heading_pp
 
 Once you have found a jupyter notebook you want to know more about but don't want to open yet you can use __heading_pp___ to get a pretty printed display of the headings in the file.  An example of how to do that is shown below:
 
-```python3
-%run nb_search.py --heading_pp './notebook.ipynb'
-```
 
-Function: **headings_pprint**
+* **IPython Console**
+	```python3
+	%run nb_search.py --heading_pp './notebook.ipynb'
+	```
+
+* **Jupyter Notebook**
+	```python3
+	from nb_search import heading_pprint
+	files = heading_pprint('PATH_TO_DIRECTORY')
+	```
 
 ### property
 
@@ -75,14 +111,19 @@ The order in which you enter the metals or even the Max_H does not matter as lon
 
 Below are 2 examples of using the property argument.  The first is just to find any notebook with the metal Mo in it.  The second is to find any notebook with Mo and a Max_H of below 8.0 micromoles.
 
-```python3
-%run nb_search.py --property '.' Mo
-```
-```python3
-%run nb_search.py --property '.' Mo and Max_H < 8.0
-```
+* **IPython Console**
+	```python3
+	%run nb_search.py --property '.' Mo
+	```
+	```python3
+	%run nb_search.py --property '.' Mo and Max_H < 8.0
+	```
 
-Function: **search_data**
+* **Jupyter Notebook**
+	```python3
+	from nb_search import search_data
+	files = search_data('Mo and Max_H < 8.0','PATH_TO_DIRECTORY')
+	```
 
 ### todo
 
@@ -94,11 +135,18 @@ If you have a specific notebook you would like to tag as TODO then you can searc
 
 The todo option is simple and only requires the user input the directory they would like to search through or '.' for the current one as shown below:
 
-```python3
-%run nb_search.py --todo '.'
-```
 
-Function: **search_todo**
+* **IPython Console**
+	```python3
+	%run nb_search.py --todo '.'
+	```
+
+
+* **Jupyter Notebook**
+	```python3
+	from nb_search import search_todo
+	files = search_todo('PATH_TO_DIRECTORY')
+	```
 
 ### fsearch
 
