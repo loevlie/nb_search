@@ -1,5 +1,9 @@
 # nb_search.py [![Travis CI w/ Logo](https://img.shields.io/travis/loevlie/nb_search/master.svg?logo=travis)](https://travis-ci.com/loevlie/nb_search) [![Issues](https://img.shields.io/github/issues-raw/loevlie/nb_search.svg?maxAge=25000)](https://github.com/loevlie/nb_search/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/loevlie/nb_search.svg?style=flat)]() [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) [![GitHub contributors](https://img.shields.io/github/contributors/loevlie/nb_search.svg?style=flat)]() [![PyPi Version](https://img.shields.io/pypi/v/nb-search.svg)](https://pypi.org/project/nb-search/)[![GitHub last commit](https://img.shields.io/github/last-commit/loevlie/nb_search.svg?style=flat)]()[![GitHub commit activity the past week, 4 weeks](https://img.shields.io/github/commit-activity/y/loevlie/nb_search.svg?style=flat)]()
 
+Have you ever needed to find a old Jupyter Notebook file but forgot where you put it :grimacing: ?  Do you remember the packages you used :thinking: or maybe some of the terms you may have put in the markdown?  If so then this package will be a useful tool for you!  After learning the uses of this package you can even save valuable notebooks for later use by adding TODO tags.  This is all explained in detail below.  
+
+### High Level Description
+
 This is a package that can be used to search through jupyter notebooks at or below a specified directory.  There are many different ways to use the package to refine the search or visualize the notebooks.  I will go through most of them below.  
 
 ## Installing __nb_search__
@@ -167,6 +171,12 @@ from nb_search import fsearch
 files = fsearch(f,'.')
 ```
 
+
+## Demonstration of Use
+
+Most of the search functions output a list of the files that can then be used instead of a directory path to refine a search.  That capability along with the TODO search are shown below:
+
+![gif](https://github.com/loevlie/nb_search/blob/master/nb_search.gif)
 ## Developing nb_search
 To install nb_search, along with the tools you need to develop and run tests, run the following in your virtualenv:
 
