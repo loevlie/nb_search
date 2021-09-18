@@ -1,8 +1,0 @@
-IPython
-matplotlib
-numpy
-nbformat
-pandas
-
-[dev]
-pytest
