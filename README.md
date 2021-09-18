@@ -127,6 +127,7 @@ The todo option is simple and only requires the user input the directory they wo
 	files = search_todo('PATH_TO_DIRECTORY')
 	```
 	
+## The next two sections (property and fsearch) are made specifically for the Kitchen Research Group
 
 ### property
 
