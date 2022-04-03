@@ -1,4 +1,26 @@
-# nb_search.py [![Travis CI w/ Logo](https://img.shields.io/travis/loevlie/nb_search/master.svg?logo=travis)](https://travis-ci.com/loevlie/nb_search) [![Issues](https://img.shields.io/github/issues-raw/loevlie/nb_search.svg?maxAge=25000)](https://github.com/loevlie/nb_search/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/loevlie/nb_search.svg?style=flat)]() [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) [![GitHub contributors](https://img.shields.io/github/contributors/loevlie/nb_search.svg?style=flat)]() [![PyPi Version](https://img.shields.io/pypi/v/nb-search.svg)](https://pypi.org/project/nb-search/)[![GitHub last commit](https://img.shields.io/github/last-commit/loevlie/nb_search.svg?style=flat)]()[![GitHub commit activity the past week, 4 weeks](https://img.shields.io/github/commit-activity/y/loevlie/nb_search.svg?style=flat)]()
+# [![Travis CI w/ Logo](https://img.shields.io/travis/loevlie/nb_search/master.svg?logo=travis)](https://travis-ci.com/loevlie/nb_search) [![Issues](https://img.shields.io/github/issues-raw/loevlie/nb_search.svg?maxAge=25000)](https://github.com/loevlie/nb_search/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/loevlie/nb_search.svg?style=flat)]() [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) [![GitHub contributors](https://img.shields.io/github/contributors/loevlie/nb_search.svg?style=flat)]() [![PyPi Version](https://img.shields.io/pypi/v/nb-search.svg)](https://pypi.org/project/nb-search/)[![GitHub last commit](https://img.shields.io/github/last-commit/loevlie/nb_search.svg?style=flat)]()[![GitHub commit activity the past week, 4 weeks](https://img.shields.io/github/commit-activity/y/loevlie/nb_search.svg?style=flat)]()
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/loevlie/nb_search">
+    <img src="nb_search.png" alt="Logo" width="200" height="80">
+  </a>
+
+  <h3 align="center">Jupyter Notebook Utility</h3>
+
+  <p align="center">
+    Your package for organization and task management with Jupyter Notebooks!
+    <br />
+	  <br />
+    <a href="https://github.com/loevlie/nb_search/blob/master/nb_search.gif">View Demo</a>
+    ·
+    <a href="https://github.com/loevlie/nb_search/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/loevlie/nb_search/issues">Request Feature</a>
+	  <br />
+  </p>
+</div>
 
 Have you ever needed to find a old Jupyter Notebook file but forgot where you put it :grimacing: ?  Do you remember the packages you used :thinking: or maybe some of the terms you put in the markdown?  If so then this package will be a useful tool for you!  You can even save valuable notebooks for later use by adding TODO tags!  This is all explained in detail below.  
 
