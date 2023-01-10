@@ -22,7 +22,7 @@
   </p>
 </div>
 
-Have you ever needed to find a old Jupyter Notebook file but forgot where you put it :grimacing: ?  Do you remember the packages you used :thinking: or maybe some of the terms you put in the markdown?  If so then this package will be a useful tool for you!  You can even save valuable notebooks for later use by adding TODO tags!  This is all explained in detail below.  
+Have you ever needed to find a old Jupyter Notebook file but forgot where you put it :grimacing: ?  Do you remember the packages you used :thinking: or maybe some of the terms you put in the markdown?  If so then this package will be a useful tool for you!  You can even save valuable notebooks for later use by adding TODO tags!  This is all explained in detail below.  For a slightly deeper explanation check out the medium article [here](https://medium.com/towards-data-science/work-faster-with-nb-search-fb381b1c88d8).   
 
 ### High Level Description
 
